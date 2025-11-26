@@ -17,10 +17,10 @@ const App = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/about" element={<About />} /> */}
-            {/* <Route path="/pricing" element={<Pricing />} /> */}
-            {/* <Route path="/contact" element={<Contact />} /> */}
-            {/* <Route path="/signin" element={<SignIn />} /> */}
+            <Route path="/about" element={<About />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
         </main>
