@@ -41,9 +41,45 @@ img-comparison-slider img:focus {
   outline: none !important;
   border: none !important;
 }
+/* Force DIRTY (first) image to match container height */
+img-comparison-slider img[slot="first"] {
+  height: 350px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
 /* Force clean (second) image to match full height */
 img-comparison-slider img[slot="second"] {
   height: 350px !important;
   object-fit: cover !important;
   object-position: center !important;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  img-comparison-slider {
+    max-width: 100%;
+    height: 200px;
+    margin: 0 auto;
+  }
+  
+  img-comparison-slider img {
+    height: 200px;
+  }
+  
+  img-comparison-slider img[slot="first"],
+  img-comparison-slider img[slot="second"] {
+    height: 200px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  img-comparison-slider {
+    height: 180px;
+  }
+  
+  img-comparison-slider img,
+  img-comparison-slider img[slot="first"],
+  img-comparison-slider img[slot="second"] {
+    height: 180px !important;
+  }
 }

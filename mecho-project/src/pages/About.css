@@ -476,8 +476,15 @@ img-comparison-slider *::-webkit-scrollbar {
     font-size: 2rem;
   }
 
+  .hero-visual {
+    justify-content: center;
+    padding-left: 0;
+  }
+
   .img-comparison-container {
     width: 100%;
+    height: 200px;
+    margin: 0 auto;
   }
 
   .section-header h2 {
@@ -534,6 +541,7 @@ img-comparison-slider *::-webkit-scrollbar {
 
   .img-comparison-container {
     width: 100%;
+    height: 180px;
   }
 
   .feature-card {
