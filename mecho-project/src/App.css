@@ -10,6 +10,43 @@ img-comparison-slider {
   max-width: 500px;
   height: 350px;
   margin: 0;
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF8C33;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e67a2e;
+}
+
+/* Navbar Logo Icon */
+.logo-icon {
+  width: auto;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Image Comparison Slider Styling */
+img-comparison-slider {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 2rem auto;
   display: block;
   border-radius: 0.5rem;
   overflow: hidden;

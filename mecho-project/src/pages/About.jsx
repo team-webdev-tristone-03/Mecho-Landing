@@ -4,6 +4,8 @@ import Dusty from "../assets/Dusty.png";
 import Clean from "../assets/Clean.jpeg";
 import "../App.css";
 import { ImgComparisonSlider } from "@img-comparison-slider/react";
+import React from 'react';
+import { FaUser, FaLeaf, FaBolt, FaGem } from 'react-icons/fa';
 
 const About = () => {
   const heroRef = useRef(null);
