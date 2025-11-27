@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaEnvelope, FaPhone, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Contact = () => {
   return (
@@ -14,7 +15,9 @@ const Contact = () => {
             <h2 className="contact-title">Get In Touch</h2>
             
             <div className="contact-item">
-              <div className="contact-icon">📧</div>
+              <div className="contact-icon">
+                <FaEnvelope color="white" />
+              </div>
               <div className="contact-details">
                 <h3 className="contact-label">Email</h3>
                 <p className="contact-value">info@mecho.com</p>
@@ -23,7 +26,9 @@ const Contact = () => {
             </div>
 
             <div className="contact-item">
-              <div className="contact-icon">📞</div>
+              <div className="contact-icon">
+                <FaPhone color="white" />
+              </div>
               <div className="contact-details">
                 <h3 className="contact-label">Phone</h3>
                 <p className="contact-value">+91 98765 43210</p>
@@ -32,7 +37,9 @@ const Contact = () => {
             </div>
 
             <div className="contact-item">
-              <div className="contact-icon">🕒</div>
+              <div className="contact-icon">
+                <FaClock color="white" />
+              </div>
               <div className="contact-details">
                 <h3 className="contact-label">Operating Hours</h3>
                 <p className="contact-value">Monday - Saturday: 8:00 AM - 8:00 PM</p>
@@ -41,7 +48,9 @@ const Contact = () => {
             </div>
 
             <div className="contact-item">
-              <div className="contact-icon">📍</div>
+              <div className="contact-icon">
+                <FaMapMarkerAlt color="white" />
+              </div>
               <div className="contact-details">
                 <h3 className="contact-label">Service Areas</h3>
                 <p className="contact-value">Mumbai, Delhi, Bangalore</p>

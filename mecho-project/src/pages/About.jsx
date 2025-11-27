@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaUser, FaLeaf, FaBolt, FaGem } from 'react-icons/fa';
 
 const About = () => {
   return (
@@ -33,7 +34,7 @@ const About = () => {
           
           <div className="ceo-section">
             <div className="ceo-avatar">
-              👨💼
+              <FaUser color="white" />
             </div>
             <h3 className="ceo-name">Rahul Mehta</h3>
             <p className="ceo-title">CEO & Founder</p>
@@ -49,17 +50,23 @@ const About = () => {
           <h2 className="section-title">Why Choose MECHO?</h2>
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon">🌱</div>
+              <div className="feature-icon">
+                <FaLeaf color="#22c55e" />
+              </div>
               <h3 className="feature-title">Eco-Friendly</h3>
               <p className="feature-description">100% waterless technology that protects the environment</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">⚡</div>
+              <div className="feature-icon">
+                <FaBolt color="#eab308" />
+              </div>
               <h3 className="feature-title">Fast Service</h3>
               <p className="feature-description">Complete wash in just 15 minutes at your doorstep</p>
             </div>
             <div className="feature-card">
-              <div className="feature-icon">💎</div>
+              <div className="feature-icon">
+                <FaGem color="#8b5cf6" />
+              </div>
               <h3 className="feature-title">Premium Quality</h3>
               <p className="feature-description">Professional-grade products for superior results</p>
             </div>
