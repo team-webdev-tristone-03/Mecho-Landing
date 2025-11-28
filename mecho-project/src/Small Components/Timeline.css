@@ -91,11 +91,13 @@
     0 8px 25px rgba(255, 106, 0, 0.3),
     0 0 0 4px #FFFFFF,
     0 0 0 8px rgba(255, 153, 0, 0.1);
+  text-align: center;
 }
 
 /* Content Cards */
 .timeline-content {
-  background: #FFFFFF;
+  background: #ffffff; 
+  margin: 0px -2vw ;
   padding: 30px;
   border-radius: 16px;
   width: 320px;

@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-section">
-            <h3>Contact Us</h3>
+            <h3 className="con-name">Contact Us</h3>
             <div className="contact-info">
               <a href="mailto:mecho.in.trichy@gmail.com">
                 <div className="contact-item">

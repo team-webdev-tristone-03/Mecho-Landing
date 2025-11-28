@@ -132,10 +132,31 @@
   gap: 2rem;
 }
 
-.top-cards {
+.desktop-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
+  grid-template-areas: 
+    "calendar time"
+    "summary summary";
+}
+
+.desktop-layout .calendar-picker {
+  grid-area: calendar;
+}
+
+.desktop-layout .time-selection {
+  grid-area: time;
+}
+
+.desktop-layout .plan-summary {
+  grid-area: summary;
+}
+
+.mobile-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .card {
@@ -459,17 +480,204 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
+/* Mobile Specific Styles */
+.mobile-day {
+  min-height: 2.5rem !important;
+  padding: 0.5rem !important;
+  font-size: 0.875rem;
+}
+
+.mobile-time-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.mobile-time-select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.mobile-book-btn {
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .top-cards {
-    grid-template-columns: 1fr;
+  .pricing-page {
+    padding: 1rem 0.5rem;
   }
   
-  .card {
-    min-height: auto;
+  .container {
+    padding: 0 1rem;
   }
   
   .page-title {
     font-size: 2rem;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .pricing-card {
+    padding: 1.5rem;
+  }
+  
+  .calendar-section {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+  .calendar-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card {
+    padding: 1rem;
+    min-height: auto;
+  }
+  
+  .calendar-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .calendar-subtitle {
+    font-size: 1rem;
+  }
+  
+  .selection-counter {
+    align-self: flex-end;
+  }
+  
+  .calendar-navigation {
+    padding: 0;
+  }
+  
+  .nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  
+  .month-title {
+    font-size: 1rem;
+  }
+  
+  .calendar-days {
+    gap: 0.125rem;
+  }
+  
+  .day-header {
+    padding: 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  .day-btn {
+    min-height: 2.5rem;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .day-number {
+    font-size: 0.875rem;
+  }
+  
+  .selected-indicator {
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.625rem;
+  }
+  
+  .time-grid {
+    padding: 0.75rem;
+  }
+  
+  .time-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .date-label {
+    min-width: auto;
+    font-size: 0.875rem;
+  }
+  
+  .time-select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+  
+  .summary-card {
+    padding: 0.75rem;
+  }
+  
+  .book-btn {
+    padding: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+  
+  .calendar-info {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .desktop-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-page {
+    padding: 0.5rem;
+  }
+  
+  .page-title {
+    font-size: 1.75rem;
+  }
+  
+  .calendar-section {
+    padding: 1rem;
+  }
+  
+  .card {
+    padding: 0.75rem;
+  }
+  
+  .calendar-days {
+    gap: 0.0625rem;
+  }
+  
+  .day-btn {
+    min-height: 2rem;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  .day-number {
+    font-size: 0.75rem;
+  }
+  
+  .nav-btn {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .month-title {
+    font-size: 0.875rem;
   }
 }

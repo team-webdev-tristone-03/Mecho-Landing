@@ -129,43 +129,45 @@ const Home = () => {
   const homeStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "MECHO - Water - Efficient Car Wash Service | Eco-Friendly Doorstep Car Cleaning",
-    "description": "Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy.",
-    "url": "https://mecho.in",
-    "mainEntity": {
+    name: "MECHO - Water - Efficient Car Wash Service | Eco-Friendly Doorstep Car Cleaning",
+    description:
+      "Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy.",
+    url: "https://mecho.in",
+    mainEntity: {
       "@type": "Service",
-      "name": "Water - Efficient Car Wash Service",
-      "description": "Eco-friendly car cleaning using advanced polymer technology",
-      "provider": {
+      name: "Water - Efficient Car Wash Service",
+      description:
+        "Eco-friendly car cleaning using advanced polymer technology",
+      provider: {
         "@type": "LocalBusiness",
-        "name": "MECHO Car Wash",
-        "address": {
+        name: "MECHO Car Wash",
+        address: {
           "@type": "PostalAddress",
-          "addressLocality": "Trichy",
-          "addressRegion": "Tamil Nadu",
-          "addressCountry": "IN"
-        }
+          addressLocality: "Trichy",
+          addressRegion: "Tamil Nadu",
+          addressCountry: "IN",
+        },
       },
-      "areaServed": "Trichy",
-      "serviceType": "Car Wash",
-      "offers": {
+      areaServed: "Trichy",
+      serviceType: "Car Wash",
+      offers: {
         "@type": "Offer",
-        "price": "75",
-        "priceCurrency": "INR",
-        "description": "15-minute Water - Efficient car wash"
-      }
+        price: "75",
+        priceCurrency: "INR",
+        description: "15-minute Water - Efficient car wash",
+      },
     },
-    "breadcrumb": {
+    breadcrumb: {
       "@type": "BreadcrumbList",
-      "itemListElement": [
+      itemListElement: [
         {
           "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://mecho.in"
-        }
-      ]
-    }
+          position: 1,
+          name: "Home",
+          item: "https://mecho.in",
+        },
+      ],
+    },
   };
 
   return (
@@ -262,7 +264,6 @@ const Home = () => {
             </span>
           </h1>
 
-
           {/* Subtitle */}
           <p className="dust-subtitle">
             Eco-friendly car cleaning at your doorstep, done in just 15 minutes,
@@ -288,7 +289,7 @@ const Home = () => {
             convenient, and significantly reduces water wastage — making it a
             smarter choice for you and the environment.
           </p>
-          <Link to="/pricing" >
+          <Link to="/pricing">
             <div className="highlight-box">
               15 Minutes Car Wash Per Day @ Just ₹75!
             </div>
@@ -327,7 +328,7 @@ const Home = () => {
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.3 }}
                 >
                   <div
-                    className={`timeline-content ${isLeft ? "left" : "right"}`}
+                    className={`timeline-content ${isLeft ? "right" : "left"}`}
                   >
                     <div className="timeline-icon">
                       <IconComponent />

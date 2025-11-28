@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Pricing.css";
 import SEO from "../components/SEO";
 
@@ -10,6 +10,18 @@ const Pricing = () => {
   const [viewingMonth, setViewingMonth] = useState(0);
   const [showTimeSelection, setShowTimeSelection] = useState(false);
   const [selectedTimes, setSelectedTimes] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const plans = [
     {
@@ -231,152 +243,150 @@ const Pricing = () => {
               Schedule Your {selectedPlan.name} Plan
             </h2>
 
-            <div className="calendar-content">
-              <div className="top-cards">
-                <div className="calendar-picker card">
-                  <div className="calendar-header">
-                    <h3 className="calendar-subtitle">
-                      Select {getPlanLimits()} Wash Dates
-                    </h3>
-                    <div className="selection-counter">
-                      <span className="counter-text">
-                        {selectedDates.length}/{getPlanLimits()}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="calendar-grid">
-                    <p className="calendar-info">
-                      Sundays are disabled for all plans
-                    </p>
-                    <div className="calendar-navigation">
-                      <button
-                        className="nav-btn"
-                        onClick={() =>
-                          setViewingMonth(Math.max(0, viewingMonth - 1))
-                        }
-                        disabled={viewingMonth === 0}
-                      >
-                        ←
-                      </button>
-                      <h4 className="month-title">
-                        {getDisplayMonth().toLocaleDateString("en-US", {
-                          month: "long",
-                          year: "numeric",
-                        })}
-                      </h4>
-                      <button
-                        className="nav-btn"
-                        onClick={() =>
-                          setViewingMonth(Math.min(2, viewingMonth + 1))
-                        }
-                        disabled={viewingMonth === 2}
-                      >
-                        →
-                      </button>
-                    </div>
-                    <div className="calendar-days">
-                      {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
-                        (day) => (
-                          <div key={day} className="day-header">
-                            {day}
-                          </div>
-                        )
-                      )}
-                      {(() => {
-                        const displayMonth = getDisplayMonth();
-                        const daysInMonth = new Date(
-                          displayMonth.getFullYear(),
-                          displayMonth.getMonth() + 1,
-                          0
-                        ).getDate();
-                        const firstDay = new Date(
-                          displayMonth.getFullYear(),
-                          displayMonth.getMonth(),
-                          1
-                        ).getDay();
-
-                        const days = [];
-
-                        for (let i = 0; i < firstDay; i++) {
-                          days.push(
-                            <div key={`empty-${i}`} className="day-empty"></div>
-                          );
-                        }
-
-                        for (let day = 1; day <= daysInMonth; day++) {
-                          const dateKey = `${displayMonth.getMonth()}-${day}`;
-                          const isDisabled = isDateDisabled(day);
-                          const isSelected = selectedDates.includes(dateKey);
-
-                          days.push(
-                            <button
-                              key={day}
-                              className={`day-btn ${
-                                isDisabled ? "disabled" : ""
-                              } ${isSelected ? "selected" : ""}`}
-                              onClick={() => handleDateSelect(dateKey, day)}
-                              disabled={isDisabled}
-                            >
-                              <span className="day-number">{day}</span>
-                              {isSelected && (
-                                <span className="selected-indicator">✓</span>
-                              )}
-                            </button>
-                          );
-                        }
-
-                        return days;
-                      })()}
-                    </div>
+            <div className={`calendar-content ${isMobile ? 'mobile-layout' : 'desktop-layout'}`}>
+              <div className="calendar-picker card">
+                <div className="calendar-header">
+                  <h3 className="calendar-subtitle">
+                    Select {getPlanLimits()} Wash Dates
+                  </h3>
+                  <div className="selection-counter">
+                    <span className="counter-text">
+                      {selectedDates.length}/{getPlanLimits()}
+                    </span>
                   </div>
                 </div>
-
-                <div className="time-selection card">
-                  <h3 className="calendar-subtitle">
-                    Select Time for Each Date
-                  </h3>
-                  <div className="time-grid">
-                    {selectedDates.length > 0 ? (
-                      selectedDates.map((dateKey) => {
-                        const [month, day] = dateKey.split("-");
-                        const monthDate = new Date(
-                          currentDate.getFullYear(),
-                          parseInt(month),
-                          1
-                        );
-                        const monthName = monthDate.toLocaleDateString(
-                          "en-US",
-                          { month: "short" }
-                        );
-
-                        return (
-                          <div key={dateKey} className="time-row">
-                            <span className="date-label">
-                              {monthName} {day}:
-                            </span>
-                            <select
-                              className="time-select"
-                              value={selectedTimes[dateKey] || ""}
-                              onChange={(e) =>
-                                handleTimeSelect(dateKey, e.target.value)
-                              }
-                            >
-                              <option value="">Select time</option>
-                              {timeSlots.map((time) => (
-                                <option key={time} value={time}>
-                                  {time}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        );
-                      })
-                    ) : (
-                      <div className="time-placeholder">
-                        <p>Please select dates first to choose time slots</p>
-                      </div>
-                    )}
+                <div className="calendar-grid">
+                  <p className="calendar-info">
+                    Sundays are disabled for all plans
+                  </p>
+                  <div className="calendar-navigation">
+                    <button
+                      className="nav-btn"
+                      onClick={() =>
+                        setViewingMonth(Math.max(0, viewingMonth - 1))
+                      }
+                      disabled={viewingMonth === 0}
+                    >
+                      ←
+                    </button>
+                    <h4 className="month-title">
+                      {getDisplayMonth().toLocaleDateString("en-US", {
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </h4>
+                    <button
+                      className="nav-btn"
+                      onClick={() =>
+                        setViewingMonth(Math.min(2, viewingMonth + 1))
+                      }
+                      disabled={viewingMonth === 2}
+                    >
+                      →
+                    </button>
                   </div>
+                  <div className="calendar-days">
+                    {(isMobile ? ["S", "M", "T", "W", "T", "F", "S"] : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]).map(
+                      (day, index) => (
+                        <div key={day} className="day-header">
+                          {day}
+                        </div>
+                      )
+                    )}
+                    {(() => {
+                      const displayMonth = getDisplayMonth();
+                      const daysInMonth = new Date(
+                        displayMonth.getFullYear(),
+                        displayMonth.getMonth() + 1,
+                        0
+                      ).getDate();
+                      const firstDay = new Date(
+                        displayMonth.getFullYear(),
+                        displayMonth.getMonth(),
+                        1
+                      ).getDay();
+
+                      const days = [];
+
+                      for (let i = 0; i < firstDay; i++) {
+                        days.push(
+                          <div key={`empty-${i}`} className="day-empty"></div>
+                        );
+                      }
+
+                      for (let day = 1; day <= daysInMonth; day++) {
+                        const dateKey = `${displayMonth.getMonth()}-${day}`;
+                        const isDisabled = isDateDisabled(day);
+                        const isSelected = selectedDates.includes(dateKey);
+
+                        days.push(
+                          <button
+                            key={day}
+                            className={`day-btn ${
+                              isDisabled ? "disabled" : ""
+                            } ${isSelected ? "selected" : ""} ${isMobile ? "mobile-day" : ""}`}
+                            onClick={() => handleDateSelect(dateKey, day)}
+                            disabled={isDisabled}
+                          >
+                            <span className="day-number">{day}</span>
+                            {isSelected && (
+                              <span className="selected-indicator">✓</span>
+                            )}
+                          </button>
+                        );
+                      }
+
+                      return days;
+                    })()}
+                  </div>
+                </div>
+              </div>
+
+              <div className="time-selection card">
+                <h3 className="calendar-subtitle">
+                  Select Time for Each Date
+                </h3>
+                <div className="time-grid">
+                  {selectedDates.length > 0 ? (
+                    selectedDates.map((dateKey) => {
+                      const [month, day] = dateKey.split("-");
+                      const monthDate = new Date(
+                        currentDate.getFullYear(),
+                        parseInt(month),
+                        1
+                      );
+                      const monthName = monthDate.toLocaleDateString(
+                        "en-US",
+                        { month: "short" }
+                      );
+
+                      return (
+                        <div key={dateKey} className={`time-row ${isMobile ? 'mobile-time-row' : ''}`}>
+                          <span className="date-label">
+                            {monthName} {day}:
+                          </span>
+                          <select
+                            className={`time-select ${isMobile ? 'mobile-time-select' : ''}`}
+                            value={selectedTimes[dateKey] || ""}
+                            onChange={(e) =>
+                              handleTimeSelect(dateKey, e.target.value)
+                            }
+                          >
+                            <option value="">Select time</option>
+                            {timeSlots.map((time) => (
+                              <option key={time} value={time}>
+                                {time}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="time-placeholder">
+                      <p>Please select dates first to choose time slots</p>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -406,7 +416,7 @@ const Pricing = () => {
                 <button
                   className={`btn book-btn ${
                     isBookButtonEnabled ? "btn-primary" : "btn-disabled"
-                  }`}
+                  } ${isMobile ? 'mobile-book-btn' : ''}`}
                   disabled={!isBookButtonEnabled}
                 >
                   Book Now
