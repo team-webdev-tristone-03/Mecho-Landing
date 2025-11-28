@@ -1,13 +1,19 @@
 {
   "name": "mecho-project",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "MECHO - Professional waterless car wash service at your doorstep. Eco-friendly 15-minute car cleaning using advanced polymer technology.",
+  "keywords": ["waterless car wash", "eco-friendly", "car cleaning", "doorstep service", "polymer technology"],
+  "author": "MECHO Car Wash",
+  "homepage": "https://mecho.in",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:analyze": "vite build --mode analyze",
+    "seo:check": "echo 'SEO files generated: robots.txt, sitemap.xml, manifest'"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -15,9 +21,11 @@
     "@img-comparison-slider/react": "^8.0.2",
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.23.24",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.9.6",
     "react-vertical-timeline-component": "^3.5.3"
