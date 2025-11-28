@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Icon from "../assets/mecho-icon.png";
 import "../App.css";
@@ -7,6 +7,13 @@ import "../App.css";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setIsOpen(false);
+  };
 
   return (
     <nav className="navbar">
@@ -22,6 +29,7 @@ const Navbar = () => {
               className={`nav-link ${
                 location.pathname === "/" ? "active" : ""
               }`}
+              onClick={() => handleNavigation('/')}
             >
               Home
             </Link>
@@ -32,6 +40,7 @@ const Navbar = () => {
               className={`nav-link ${
                 location.pathname === "/about" ? "active" : ""
               }`}
+              onClick={() => handleNavigation('/about')}
             >
               About
             </Link>
@@ -42,6 +51,7 @@ const Navbar = () => {
               className={`nav-link ${
                 location.pathname === "/pricing" ? "active" : ""
               }`}
+              onClick={() => handleNavigation('/pricing')}
             >
               Pricing
             </Link>
@@ -52,6 +62,7 @@ const Navbar = () => {
               className={`nav-link ${
                 location.pathname === "/contact" ? "active" : ""
               }`}
+              onClick={() => handleNavigation('/contact')}
             >
               Contact
             </Link>
@@ -59,11 +70,11 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-buttons">
-          <Link to="/signin" className="btn btn-secondary">
+          {/* <Link to="/signin" className="btn btn-secondary">
             Sign In
-          </Link>
-          <Link to="/signup" className="btn btn-primary">
-            Sign Up
+          </Link> */}
+          <Link to="/pricing" className="btn btn-primary" onClick={() => handleNavigation('/pricing')}>
+            Book Now
           </Link>
         </div>
 
@@ -76,7 +87,7 @@ const Navbar = () => {
         <Link
           to="/"
           className={`nav-link ${location.pathname === "/" ? "active" : ""}`}
-          onClick={() => setIsOpen(false)}
+          onClick={() => handleNavigation('/')}
         >
           Home
         </Link>
@@ -85,7 +96,7 @@ const Navbar = () => {
           className={`nav-link ${
             location.pathname === "/about" ? "active" : ""
           }`}
-          onClick={() => setIsOpen(false)}
+          onClick={() => handleNavigation('/about')}
         >
           About
         </Link>
@@ -94,7 +105,7 @@ const Navbar = () => {
           className={`nav-link ${
             location.pathname === "/pricing" ? "active" : ""
           }`}
-          onClick={() => setIsOpen(false)}
+          onClick={() => handleNavigation('/pricing')}
         >
           Pricing
         </Link>
@@ -103,21 +114,21 @@ const Navbar = () => {
           className={`nav-link ${
             location.pathname === "/contact" ? "active" : ""
           }`}
-          onClick={() => setIsOpen(false)}
+          onClick={() => handleNavigation('/contact')}
         >
           Contact
         </Link>
         <Link
           to="/signin"
           className="btn btn-secondary"
-          onClick={() => setIsOpen(false)}
+          onClick={() => handleNavigation('/signin')}
         >
           Sign In
         </Link>
         <Link
           to="/signup"
           className="btn btn-primary"
-          onClick={() => setIsOpen(false)}
+          onClick={() => handleNavigation('/signup')}
         >
           Sign Up
         </Link>

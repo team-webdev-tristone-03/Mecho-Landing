@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './Pricing.css';
+import SEO from '../components/SEO';
 
 const Pricing = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -91,8 +93,132 @@ const Pricing = () => {
 
   const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '2:00 PM', '3:00 PM', '4:00 PM'];
 
+  const pricingStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MECHO Car Wash Pricing Plans",
+    "description": "Choose from our affordable waterless car wash subscription plans. Silver (₹499), Gold (₹899), and Platinum (₹1499) monthly plans available.",
+    "url": "https://mecho.in/pricing",
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Car Wash Subscription Plans",
+      "itemListElement": [
+        {
+          "@type": "Product",
+          "name": "Silver Plan",
+          "description": "4 exterior wash, 1 interior wash per month",
+          "offers": {
+            "@type": "Offer",
+            "price": "499",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Gold Plan",
+          "description": "8 exterior wash, 1 interior wash, tyre cleaning per month",
+          "offers": {
+            "@type": "Offer",
+            "price": "899",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "Product",
+          "name": "Platinum Plan",
+          "description": "15 exterior wash, 1 interior wash, tyre cleaning, polish per month",
+          "offers": {
+            "@type": "Offer",
+            "price": "1499",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      ]
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mecho.in"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Pricing",
+          "item": "https://mecho.in/pricing"
+        }
+      ]
+    }
+  };
+
+  const getPlanLimits = () => {
+    switch(selectedPlan?.name) {
+      case 'Silver': return 4;
+      case 'Gold': return 8;
+      case 'Platinum': return 15;
+      default: return 0;
+    }
+  };
+
+  const getDisplayMonth = () => {
+    const date = new Date(currentDate);
+    date.setMonth(date.getMonth() + viewingMonth);
+    return date;
+  };
+
+  const isDateDisabled = (day) => {
+    const displayMonth = getDisplayMonth();
+    const selectedDate = new Date(displayMonth.getFullYear(), displayMonth.getMonth(), day);
+    
+    // Sundays disabled for all plans (0 = Sunday)
+    return selectedDate.getDay() === 0;
+  };
+
+  const handleDateSelect = (dateKey, day) => {
+    if (isDateDisabled(day)) return;
+    
+    const maxDates = getPlanLimits();
+    
+    setSelectedDates(prev => {
+      if (prev.includes(dateKey)) {
+        return prev.filter(d => d !== dateKey);
+      } else if (prev.length < maxDates) {
+        return [...prev, dateKey];
+      } else {
+        // FIFO: Remove first selected date and add new one
+        const newDates = [...prev.slice(1), dateKey];
+        return newDates;
+      }
+    });
+  };
+
+  const handleTimeSelect = (date, time) => {
+    setSelectedTimes(prev => ({
+      ...prev,
+      [date]: time
+    }));
+  };
+
+  const isBookButtonEnabled = selectedDates.length === getPlanLimits() && 
+    selectedDates.every(date => selectedTimes[date]);
+
+  const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '2:00 PM', '3:00 PM', '4:00 PM'];
+
   return (
     <div className="pricing-page">
+      <SEO
+        title="MECHO Car Wash Pricing Plans | Affordable Waterless Car Wash Subscriptions"
+        description="Choose from our affordable waterless car wash subscription plans. Silver (₹499), Gold (₹899), and Platinum (₹1499) monthly plans available."
+        keywords="car wash pricing, waterless car wash plans, car wash subscription, affordable car wash, MECHO pricing, car wash packages"
+        url="https://mecho.in/pricing"
+        structuredData={pricingStructuredData}
+      />
       <div className="container">
         <div className="page-header">
           <h1 className="page-title">Choose Your Plan</h1>
