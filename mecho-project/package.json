@@ -16,8 +16,6 @@
     "seo:check": "echo 'SEO files generated: robots.txt, sitemap.xml, manifest'"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
     "@img-comparison-slider/react": "^8.0.2",
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",

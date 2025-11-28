@@ -157,6 +157,59 @@ const Pricing = () => {
     }
   };
 
+  const getPlanLimits = () => {
+    switch(selectedPlan?.name) {
+      case 'Silver': return 4;
+      case 'Gold': return 8;
+      case 'Platinum': return 15;
+      default: return 0;
+    }
+  };
+
+  const getDisplayMonth = () => {
+    const date = new Date(currentDate);
+    date.setMonth(date.getMonth() + viewingMonth);
+    return date;
+  };
+
+  const isDateDisabled = (day) => {
+    const displayMonth = getDisplayMonth();
+    const selectedDate = new Date(displayMonth.getFullYear(), displayMonth.getMonth(), day);
+    
+    // Sundays disabled for all plans (0 = Sunday)
+    return selectedDate.getDay() === 0;
+  };
+
+  const handleDateSelect = (dateKey, day) => {
+    if (isDateDisabled(day)) return;
+    
+    const maxDates = getPlanLimits();
+    
+    setSelectedDates(prev => {
+      if (prev.includes(dateKey)) {
+        return prev.filter(d => d !== dateKey);
+      } else if (prev.length < maxDates) {
+        return [...prev, dateKey];
+      } else {
+        // FIFO: Remove first selected date and add new one
+        const newDates = [...prev.slice(1), dateKey];
+        return newDates;
+      }
+    });
+  };
+
+  const handleTimeSelect = (date, time) => {
+    setSelectedTimes(prev => ({
+      ...prev,
+      [date]: time
+    }));
+  };
+
+  const isBookButtonEnabled = selectedDates.length === getPlanLimits() && 
+    selectedDates.every(date => selectedTimes[date]);
+
+  const timeSlots = ['9:00 AM', '10:00 AM', '11:00 AM', '2:00 PM', '3:00 PM', '4:00 PM'];
+
   return (
     <div className="pricing-page">
       <SEO
