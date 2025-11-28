@@ -41,7 +41,7 @@ const Contact = () => {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": "Contact MECHO Car Wash",
-    "description": "Get in touch with MECHO for waterless car wash services. Contact us for bookings, support, or any queries about our eco-friendly car cleaning services.",
+    "description": "Get in touch with MECHO for Water - Efficient car wash services. Contact us for bookings, support, or any queries about our eco-friendly car cleaning services.",
     "url": "https://mecho.in/contact",
     "mainEntity": {
       "@type": "LocalBusiness",
@@ -86,9 +86,9 @@ const Contact = () => {
   return (
     <div className="contact-page" style={{ paddingTop: "80px" }}>
       <SEO
-        title="Contact MECHO Car Wash | Get in Touch for Waterless Car Wash Services"
-        description="Get in touch with MECHO for waterless car wash services. Contact us for bookings, support, or any queries about our eco-friendly car cleaning services."
-        keywords="contact MECHO, car wash contact, waterless car wash booking, MECHO support, car wash service contact, Trichy car wash contact"
+        title="Contact MECHO Car Wash | Get in Touch for Water - Efficient Car Wash Services"
+        description="Get in touch with MECHO for Water - Efficient car wash services. Contact us for bookings, support, or any queries about our eco-friendly car cleaning services."
+        keywords="contact MECHO, car wash contact, Water - Efficient car wash booking, MECHO support, car wash service contact, Trichy car wash contact"
         url="https://mecho.in/contact"
         structuredData={contactStructuredData}
       />

@@ -3,8 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "MECHO - Professional waterless car wash service at your doorstep. Eco-friendly 15-minute car cleaning using advanced polymer technology.",
-  "keywords": ["waterless car wash", "eco-friendly", "car cleaning", "doorstep service", "polymer technology"],
+  "description": "MECHO - Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning using advanced polymer technology.",
+  "keywords": ["Water - Efficient car wash", "eco-friendly", "car cleaning", "doorstep service", "polymer technology"],
   "author": "MECHO Car Wash",
   "homepage": "https://mecho.in",
   "scripts": {

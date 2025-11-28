@@ -1,7 +1,7 @@
 {
-  "name": "MECHO - Waterless Car Wash Service",
+  "name": "MECHO - Water - Efficient Car Wash Service",
   "short_name": "MECHO",
-  "description": "Professional waterless car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75.",
+  "description": "Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFF5E6",

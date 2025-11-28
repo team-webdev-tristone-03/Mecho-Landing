@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import './NotFound.css';
+import '../pages/NotFound.css';
 
 const NotFound = () => {
   return (
     <div className="not-found-container">
       <SEO
         title="Page Not Found - MECHO Car Wash"
-        description="The page you're looking for doesn't exist. Return to MECHO's homepage to explore our waterless car wash services."
+        description="The page you're looking for doesn't exist. Return to MECHO's homepage to explore our Water - Efficient car wash services."
         url="https://mecho.in/404"
       />
       

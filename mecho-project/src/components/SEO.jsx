@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SEO = ({
-  title = "MECHO - Waterless Car Wash Service | Eco-Friendly Doorstep Car Cleaning",
-  description = "Professional waterless car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy.",
-  keywords = "waterless car wash, eco-friendly car cleaning, doorstep car wash, car wash service, Trichy car wash, mobile car wash, car detailing",
+  title = "MECHO - Water - Efficient Car Wash Service | Eco-Friendly Doorstep Car Cleaning",
+  description = "Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy.",
+  keywords = "Water - Efficient car wash, eco-friendly car cleaning, doorstep car wash, car wash service, Trichy car wash, mobile car wash, car detailing",
   image = "https://mecho.in/og-image.jpg",
   url = "https://mecho.in",
   type = "website",

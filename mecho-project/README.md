@@ -1,19 +1,19 @@
-# MECHO - Waterless Car Wash Service
+# MECHO - Water - Efficient Car Wash Service
 
-A modern, responsive React web application for MECHO waterless car wash service built with React, Tailwind CSS, and React Router.
+A modern, responsive React web application for MECHO Water - Efficient car wash service built with React, Tailwind CSS, and React Router.
 
 ## Features
 
 ### 🏠 **Home Page (Landing)**
-- **Navigation Bar**: Logo, menu (Home, About, Pricing, Contact), Sign In/Sign Up buttons
+- **Navigation Bar**: Logo, menu (Home, About, Pricing, Contact), 
 - **Hero Section**: Large title with tagline, eco-friendly messaging, car wash icon, CTA button
-- **About Service**: Waterless car wash explanation with highlighted pricing "15 Minutes Car Wash Per Day — Just ₹75!"
+- **About Service**: Water - Efficient car wash explanation with highlighted pricing "15 Minutes Car Wash Per Day — Just ₹75!"
 - **Testimonials**: Auto-scrolling carousel with customer reviews (yellow stroke borders)
 - **Mini Footer CTA**: "Drive Clean. Save Water." with Book Now button
 - **Main Footer**: Social media links, navigation, contact info
 
 ### ℹ️ **About Page**
-- Company information and waterless car wash benefits
+- Company information and Water - Efficient car wash benefits
 - CEO section with placeholder image and description
 - Mission statement and eco-friendly advantages
 

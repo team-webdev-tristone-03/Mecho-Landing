@@ -38,14 +38,14 @@
 ### Page-Specific Optimization
 
 #### Home Page
-- [x] Target keyword: "waterless car wash service"
+- [x] Target keyword: "Water - Efficient car wash service"
 - [x] Secondary keywords: "eco-friendly car cleaning", "doorstep car wash"
 - [x] Compelling meta description with price point (₹75)
 - [x] H1 tag with primary keyword
 - [x] Service benefits and features highlighted
 
 #### About Page
-- [x] Target keyword: "waterless car wash technology"
+- [x] Target keyword: "Water - Efficient car wash technology"
 - [x] Company story and mission
 - [x] CEO information and credentials
 - [x] Technology explanation (polymer technology)
@@ -122,7 +122,7 @@
 ## 📊 SEO Metrics to Track
 
 1. **Organic Traffic Growth**
-2. **Keyword Rankings** (waterless car wash, eco-friendly car cleaning)
+2. **Keyword Rankings** (Water - Efficient car wash, eco-friendly car cleaning)
 3. **Local Search Visibility** (Trichy car wash services)
 4. **Core Web Vitals** (LCP, FID, CLS)
 5. **Click-Through Rates** from search results

@@ -62,20 +62,20 @@ const About = () => {
   const aboutStructuredData = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About MECHO - Waterless Car Wash Technology",
-    "description": "Learn about MECHO's revolutionary waterless car wash technology, our mission to provide eco-friendly car care, and meet our leadership team.",
+    "name": "About MECHO - Water - Efficient Car Wash Technology",
+    "description": "Learn about MECHO's revolutionary Water - Efficient car wash technology, our mission to provide eco-friendly car care, and meet our leadership team.",
     "url": "https://mecho.in/about",
     "mainEntity": {
       "@type": "Organization",
       "name": "MECHO Car Wash",
-      "description": "Leading provider of waterless car wash services using advanced polymer technology",
+      "description": "Leading provider of Water - Efficient car wash services using advanced polymer technology",
       "founder": {
         "@type": "Person",
         "name": "Rahul Mehta",
         "jobTitle": "Chief Executive Officer & Founder"
       },
       "foundingDate": "2020",
-      "mission": "To provide fast, affordable, waterless car cleaning and reliable mechanical support using innovation, mobility, and sustainable cleaning technology."
+      "mission": "To provide fast, affordable, Water - Efficient car cleaning and reliable mechanical support using innovation, mobility, and sustainable cleaning technology."
     },
     "breadcrumb": {
       "@type": "BreadcrumbList",
@@ -99,9 +99,9 @@ const About = () => {
   return (
     <div className="about-page-new">
       <SEO
-        title="About MECHO - Waterless Car Wash Technology | Eco-Friendly Car Care"
-        description="Learn about MECHO's revolutionary waterless car wash technology, our mission to provide eco-friendly car care, and meet our leadership team."
-        keywords="about MECHO, waterless car wash technology, eco-friendly car care, polymer technology, car wash company, sustainable car cleaning"
+        title="About MECHO - Water - Efficient Car Wash Technology | Eco-Friendly Car Care"
+        description="Learn about MECHO's revolutionary Water - Efficient car wash technology, our mission to provide eco-friendly car care, and meet our leadership team."
+        keywords="about MECHO, Water - Efficient car wash technology, eco-friendly car care, polymer technology, car wash company, sustainable car cleaning"
         url="https://mecho.in/about"
         structuredData={aboutStructuredData}
       />
@@ -286,7 +286,7 @@ const About = () => {
                 Rahul founded MECHO with a vision to revolutionize car care
                 through sustainable innovation. His expertise in both mechanical
                 services and eco-friendly technologies has positioned MECHO as a
-                leader in waterless car cleaning solutions.
+                leader in Water - Efficient car cleaning solutions.
               </p>
               <p>
                 Under his leadership, MECHO has grown from a local startup to a

@@ -14,6 +14,8 @@ import { motion, useInView } from "framer-motion";
 import bgHero from "../assets/bg-hero.png";
 import "../Small Components/Timeline.css";
 import SEO from "../components/SEO";
+import "../components/MobileTitle.css";
+import "../components/BookNowButton.css";
 
 import "../App.css";
 import { Timeline } from "@mui/icons-material";
@@ -127,12 +129,12 @@ const Home = () => {
   const homeStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "MECHO - Waterless Car Wash Service | Eco-Friendly Doorstep Car Cleaning",
-    "description": "Professional waterless car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy.",
+    "name": "MECHO - Water - Efficient Car Wash Service | Eco-Friendly Doorstep Car Cleaning",
+    "description": "Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy.",
     "url": "https://mecho.in",
     "mainEntity": {
       "@type": "Service",
-      "name": "Waterless Car Wash Service",
+      "name": "Water - Efficient Car Wash Service",
       "description": "Eco-friendly car cleaning using advanced polymer technology",
       "provider": {
         "@type": "LocalBusiness",
@@ -150,7 +152,7 @@ const Home = () => {
         "@type": "Offer",
         "price": "75",
         "priceCurrency": "INR",
-        "description": "15-minute waterless car wash"
+        "description": "15-minute Water - Efficient car wash"
       }
     },
     "breadcrumb": {
@@ -169,9 +171,9 @@ const Home = () => {
   return (
     <div>
       <SEO
-        title="MECHO - Waterless Car Wash Service | Eco-Friendly Doorstep Car Cleaning"
-        description="Professional waterless car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy."
-        keywords="waterless car wash, eco-friendly car cleaning, doorstep car wash, car wash service, Trichy car wash, mobile car wash, car detailing, polymer technology"
+        title="MECHO - Water - Efficient Car Wash Service | Eco-Friendly Doorstep Car Cleaning"
+        description="Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning for just ₹75. Book now for premium car care in Trichy."
+        keywords="Water - Efficient car wash, eco-friendly car cleaning, doorstep car wash, car wash service, Trichy car wash, mobile car wash, car detailing, polymer technology"
         url="https://mecho.in"
         structuredData={homeStructuredData}
       />
@@ -196,55 +198,70 @@ const Home = () => {
         <div className="dust-hero-content">
           {/* Animated Title */}
           <h1 className="dust-title">
-            {words.map((word, wordIndex) => (
-              <span
-                key={wordIndex}
-                style={{
-                  marginRight: wordIndex < words.length - 1 ? "0.3em" : "0",
-                }}
-              >
-                {word.split("").map((letter, letterIndex) => {
-                  const totalIndex =
-                    words.slice(0, wordIndex).join("").length +
-                    wordIndex +
-                    letterIndex;
-                  const startX =
-                    Math.random() > 0.5
-                      ? Math.random() * 100 + 50
-                      : -(Math.random() * 100 + 50);
-                  return (
-                    <span
-                      key={letterIndex}
-                      className={`dust-letter ${
-                        word === "MECHO" ? "mecho-orange" : ""
-                      }`}
-                      style={{
-                        "--start-x": `${startX}px`,
-                        animationDelay: `${totalIndex * 0.08}s`,
-                      }}
-                    >
-                      {/* //   "--start-x": `${startX}px`,
-                      //   animationDelay: `${totalIndex * 0.08}s`,
-                      //   background:
-                      //     word === "MECHO"
-                      //       ? "linear-gradient(135deg, #FFD700, #FF8C00)"
-                      //       : undefined,
-                      //   WebkitBackgroundClip:
-                      //     word === "MECHO" ? "text" : undefined,
-                      //   WebkitTextFillColor:
-                      //     word === "MECHO" ? "transparent" : undefined,
-                      //   backgroundClip: word === "MECHO" ? "text" : undefined,
-                      // }} */}
-                      {letter}
-                    </span>
-                  );
-                })}
-              </span>
-            ))}
+            <span className="title-line-1">
+              {["Unga", "MECHO"].map((word, wordIndex) => (
+                <span
+                  key={wordIndex}
+                  style={{
+                    marginRight: wordIndex < 1 ? "0.3em" : "0",
+                  }}
+                >
+                  {word.split("").map((letter, letterIndex) => {
+                    const totalIndex = wordIndex * 5 + letterIndex;
+                    const startX =
+                      Math.random() > 0.5
+                        ? Math.random() * 100 + 50
+                        : -(Math.random() * 100 + 50);
+                    return (
+                      <span
+                        key={letterIndex}
+                        className={`dust-letter ${
+                          word === "MECHO" ? "mecho-orange" : ""
+                        }`}
+                        style={{
+                          "--start-x": `${startX}px`,
+                          animationDelay: `${totalIndex * 0.08}s`,
+                        }}
+                      >
+                        {letter}
+                      </span>
+                    );
+                  })}
+                </span>
+              ))}
+            </span>
+            <span className="title-line-2">
+              {["In", "Our", "Trichy"].map((word, wordIndex) => (
+                <span
+                  key={wordIndex}
+                  style={{
+                    marginRight: wordIndex < 2 ? "0.3em" : "0",
+                  }}
+                >
+                  {word.split("").map((letter, letterIndex) => {
+                    const totalIndex = (wordIndex + 2) * 5 + letterIndex;
+                    const startX =
+                      Math.random() > 0.5
+                        ? Math.random() * 100 + 50
+                        : -(Math.random() * 100 + 50);
+                    return (
+                      <span
+                        key={letterIndex}
+                        className="dust-letter"
+                        style={{
+                          "--start-x": `${startX}px`,
+                          animationDelay: `${totalIndex * 0.08}s`,
+                        }}
+                      >
+                        {letter}
+                      </span>
+                    );
+                  })}
+                </span>
+              ))}
+            </span>
           </h1>
-          {/* <h1 className="dust-title">
-            Unga <span style={"color:red"}>MECHO</span> In Our Trichy
-          </h1> */}
+
 
           {/* Subtitle */}
           <p className="dust-subtitle">
@@ -255,7 +272,7 @@ const Home = () => {
           {/* CTA Button */}
           <div className="dust-cta">
             <Link to="/pricing" className="dust-button">
-              Book Now
+              <span>Book Now</span>
             </Link>
           </div>
         </div>

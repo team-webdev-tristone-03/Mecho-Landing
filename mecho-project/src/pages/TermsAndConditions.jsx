@@ -7,7 +7,7 @@ const TermsAndConditions = () => {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Terms and Conditions - MECHO Car Wash",
-    "description": "Read MECHO Car Wash terms and conditions for our waterless car wash services. Learn about our service agreement, booking policies, and liability terms.",
+    "description": "Read MECHO Car Wash terms and conditions for our Water - Efficient car wash services. Learn about our service agreement, booking policies, and liability terms.",
     "url": "https://mecho.in/terms",
     "breadcrumb": {
       "@type": "BreadcrumbList",
@@ -32,8 +32,8 @@ const TermsAndConditions = () => {
     <div className="terms-container">
       <SEO
         title="Terms & Conditions - MECHO Car Wash | Service Agreement & Policies"
-        description="Read MECHO Car Wash terms and conditions for our waterless car wash services. Learn about our service agreement, booking policies, and liability terms."
-        keywords="MECHO terms and conditions, car wash service agreement, waterless car wash policies, MECHO liability terms"
+        description="Read MECHO Car Wash terms and conditions for our Water - Efficient car wash services. Learn about our service agreement, booking policies, and liability terms."
+        keywords="MECHO terms and conditions, car wash service agreement, Water - Efficient car wash policies, MECHO liability terms"
         url="https://mecho.in/terms"
         structuredData={termsStructuredData}
       />
