@@ -7,6 +7,7 @@
   "keywords": ["Water - Efficient car wash", "eco-friendly", "car cleaning", "doorstep service", "polymer technology"],
   "author": "MECHO Car Wash",
   "homepage": "https://mecho.in",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
