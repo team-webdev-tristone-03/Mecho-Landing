@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
 import { FaEnvelope, FaClock, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import "./Contact.css";
 import SEO from "../components/SEO";
@@ -18,31 +16,25 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const sendEmail = async (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    try {
-      // Store in Firestore
-      await addDoc(collection(db, "Contact Queries"), {
-        ...formData,
-        timestamp: new Date(),
-        status: "new"
-      });
-
-      // Send email via EmailJS
-      await emailjs.send(
+    emailjs
+      .send(
         "service_eko59me", // replace with EmailJS service ID
         "template_zxniudv", // replace with EmailJS template ID
         formData,
         "q5Tzft7O_4HipwdNX" // replace with EmailJS public key
+      )
+      .then(
+        (result) => {
+          alert("Message Sent Successfully!");
+          setFormData({ name: "", email: "", phone: "", message: "" });
+        },
+        (error) => {
+          alert("Failed to send message. Try again!");
+        }
       );
-
-      alert("Message Sent Successfully!");
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to send message. Try again!");
-    }
   };
 
   const contactStructuredData = {

@@ -4,10 +4,15 @@
   "version": "1.0.0",
   "type": "module",
   "description": "MECHO - Professional Water - Efficient car wash service at your doorstep. Eco-friendly 15-minute car cleaning using advanced polymer technology.",
-  "keywords": ["Water - Efficient car wash", "eco-friendly", "car cleaning", "doorstep service", "polymer technology"],
+  "keywords": [
+    "Water - Efficient car wash",
+    "eco-friendly",
+    "car cleaning",
+    "doorstep service",
+    "polymer technology"
+  ],
   "author": "MECHO Car Wash",
   "homepage": "https://mecho.in",
-
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -18,9 +23,8 @@
   },
   "dependencies": {
     "@img-comparison-slider/react": "^8.0.2",
-    "@mui/icons-material": "^7.3.5",
-    "@mui/material": "^7.3.5",
     "emailjs-com": "^3.2.0",
+    "firebase": "^12.6.0",
     "framer-motion": "^12.23.24",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

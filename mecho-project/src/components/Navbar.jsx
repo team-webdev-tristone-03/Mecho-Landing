@@ -70,11 +70,11 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-buttons">
-          {/* <Link to="/signin" className="btn btn-secondary">
+          <Link to="/signin" className="btn btn-secondary">
             Sign In
-          </Link> */}
-          <Link to="/pricing" className="btn btn-primary" onClick={() => handleNavigation('/pricing')}>
-            Book Now
+          </Link>
+          <Link to="/signup" className="btn btn-primary" onClick={() => handleNavigation('/pricing')}>
+            Sign Up
           </Link>
         </div>
 

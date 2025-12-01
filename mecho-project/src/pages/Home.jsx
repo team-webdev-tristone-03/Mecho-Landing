@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ImgComparisonSlider } from "@img-comparison-slider/react";
 import { FaCar, FaStar } from "react-icons/fa";
@@ -14,11 +14,8 @@ import { motion, useInView } from "framer-motion";
 import bgHero from "../assets/bg-hero.png";
 import "../Small Components/Timeline.css";
 import SEO from "../components/SEO";
-import "../components/MobileTitle.css";
-import "../components/BookNowButton.css";
-
 import "../App.css";
-import { Timeline } from "@mui/icons-material";
+
 
 const Home = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -271,8 +268,28 @@ const Home = () => {
           </p>
 
           {/* CTA Button */}
-          <div className="dust-cta">
-            <Link to="/pricing" className="dust-button">
+          <div className="dust-cta" style={{ marginTop: window.innerWidth <= 768 ? '0vh' : '50vh' }}>
+            <Link 
+              to="/pricing" 
+              className="dust-button"
+              style={{
+                display: 'inline-block',
+                background: 'linear-gradient(135deg, #FF6A00 0%, #FFB60A 100%)',
+                color: 'white',
+                fontWeight: '600',
+                padding: '1rem 2rem',
+                borderRadius: '50px',
+                fontSize: '1.125rem',
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                boxShadow: '0 4px 15px rgba(255, 106, 0, 0.3)',
+                border: 'none',
+                cursor: 'pointer'
+          
+              }}
+            >
               <span>Book Now</span>
             </Link>
           </div>

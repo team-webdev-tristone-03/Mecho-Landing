@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import "./About.css";
 import Dusty from "../assets/Dusty.jpg";
 import Clean from "../assets/Clean.jpg";
@@ -7,6 +8,7 @@ import { ImgComparisonSlider } from "@img-comparison-slider/react";
 import React from "react";
 import { FaUser, FaLeaf, FaBolt, FaGem } from "react-icons/fa";
 import SEO from "../components/SEO";
+import COFounder from "../assets/co-founder.jpg";
 
 const About = () => {
   const heroRef = useRef(null);
@@ -62,38 +64,41 @@ const About = () => {
   const aboutStructuredData = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About MECHO - Water - Efficient Car Wash Technology",
-    "description": "Learn about MECHO's revolutionary Water - Efficient car wash technology, our mission to provide eco-friendly car care, and meet our leadership team.",
-    "url": "https://mecho.in/about",
-    "mainEntity": {
+    name: "About MECHO - Water - Efficient Car Wash Technology",
+    description:
+      "Learn about MECHO's revolutionary Water - Efficient car wash technology, our mission to provide eco-friendly car care, and meet our leadership team.",
+    url: "https://mecho.in/about",
+    mainEntity: {
       "@type": "Organization",
-      "name": "MECHO Car Wash",
-      "description": "Leading provider of Water - Efficient car wash services using advanced polymer technology",
-      "founder": {
+      name: "MECHO Car Wash",
+      description:
+        "Leading provider of Water - Efficient car wash services using advanced polymer technology",
+      founder: {
         "@type": "Person",
-        "name": "Rahul Mehta",
-        "jobTitle": "Chief Executive Officer & Founder"
+        name: "Manoj",
+        jobTitle: "Chief Executive Officer & Founder",
       },
-      "foundingDate": "2020",
-      "mission": "To provide fast, affordable, Water - Efficient car cleaning and reliable mechanical support using innovation, mobility, and sustainable cleaning technology."
+      foundingDate: "2020",
+      mission:
+        "To provide fast, affordable, Water - Efficient car cleaning and reliable mechanical support using innovation, mobility, and sustainable cleaning technology.",
     },
-    "breadcrumb": {
+    breadcrumb: {
       "@type": "BreadcrumbList",
-      "itemListElement": [
+      itemListElement: [
         {
           "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://mecho.in"
+          position: 1,
+          name: "Home",
+          item: "https://mecho.in",
         },
         {
           "@type": "ListItem",
-          "position": 2,
-          "name": "About",
-          "item": "https://mecho.in/about"
-        }
-      ]
-    }
+          position: 2,
+          name: "About",
+          item: "https://mecho.in/about",
+        },
+      ],
+    },
   };
 
   return (
@@ -253,47 +258,167 @@ const About = () => {
               </div>
               <h3>Our Mission</h3>
               <p>
-                To provide fast, affordable, Limited Water car cleaning and reliable
-                mechanical support using innovation, mobility, and sustainable
-                cleaning technology.
+                To provide fast, affordable, Limited Water car cleaning and
+                reliable mechanical support using innovation, mobility, and
+                sustainable cleaning technology.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CEO Section */}
-      <section className="ceo-section-new" ref={ceoRef}>
+      {/* Founders Section */}
+      <section className="founders-section" ref={ceoRef}>
         <div className="container">
-          <div className="ceo-content">
-            <div className="ceo-image">
-              <div className="ceo-placeholder">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="#FF6A00">
-                  <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
-                </svg>
-              </div>
-            </div>
-            <div className="ceo-text">
-              <div className="ceo-header">
-                <h2>Meet Our CEO</h2>
-                <div className="ceo-details">
-                  <h3>Rahul Mehta</h3>
-                  <span>Chief Executive Officer & Founder</span>
+          <div className="founders-header">
+            <h2 className="founders-title">Meet Our Founders</h2>
+            <p className="founders-subtitle">
+              Visionary leaders driving innovation in automotive care with
+              passion, expertise, and a commitment to excellence.
+            </p>
+          </div>
+
+          <div className="founders-grid">
+            {/* Founder Card */}
+            <div className="founder-card founder-primary">
+              <div className="founder-image-container">
+                <div className="founder-image">
+                  <img
+                    src={COFounder}
+                    alt="John - Co-Founder & CEO"
+                    className="founder-photo"
+                  />
+                </div>
+                <div className="founder-badge">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="#FFD700"
+                  >
+                    <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z" />
+                  </svg>
                 </div>
               </div>
+
+              <div className="founder-info">
+                <h3 className="founder-name">MANOJ</h3>
+                <p className="founder-title">Founder & CEO</p>
+                <div className="founder-separator"></div>
+
+                <div className="founder-bio">
+                  <p className="bio-highlight">
+                    Mecho was created with one goal, to give Trichy a car
+                    service people can finally trust.
+                  </p>
+                  <p>
+                    My focus is simple: every wash, every repair, every service
+                    should be done right. By trained technicians who value your
+                    time and treat your vehicle with care. With Mecho, what you
+                    see is what you get: honest work, on-time service, and a
+                    smooth, stress-free experience.
+                  </p>
+                  <p>
+                    Mecho is my promise to Trichy: Good service should never be
+                    a guessing game, and with us, it isn’t we deliver clarity,
+                    consistency, and uncompromised quality every time.
+                  </p>
+                </div>
+
+                <div className="founder-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">1+</span>
+                    <span className="stat-label">Years Experience</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">100+</span>
+                    <span className="stat-label">Happy Customers</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Co-Founder Card */}
+            <div className="founder-card founder-secondary">
+              <div className="founder-image-container">
+                <div className="founder-image">
+                  <img
+                    src={COFounder}
+                    alt="John - Co-Founder & CEO"
+                    className="founder-photo"
+                  />
+                </div>
+                <div className="founder-badge">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="#FFD700"
+                  >
+                    <path d="M9 12L11 14L15 10M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z" />
+                  </svg>
+                </div>
+              </div>
+
+              <div className="founder-info">
+                <h3 className="founder-name">JOHN</h3>
+                <p className="founder-title">Co-Founder & CEO</p>
+                <div className="founder-separator"></div>
+
+                <div className="founder-bio">
+                  <p className="bio-highlight">
+                    "Technology should simplify life, not complicate it. That's
+                    the philosophy behind every MECHO innovation."
+                  </p>
+                  <p>
+                    I started Mecho with one clear idea, to make car care easy
+                    and accessible for everyone. Most people don’t have the time
+                    to visit a service center, and that’s where Mecho comes in.
+                  </p>
+                  <p>
+                    With our doorstep services, skilled team, and focus on
+                    quality, we want every car owner to feel confident that
+                    their vehicle is in safe hands. Your time is valuable, and
+                    Mecho is built to respect that.
+                  </p>
+                  <p>
+                    Thank you for trusting us. We’re here to keep your car
+                    shining, wherever you are.
+                  </p>
+                </div>
+
+                <div className="founder-stats">
+                  <div className="stat-item">
+                    <span className="stat-number">4+</span>
+                    <span className="stat-label">Years Tech Experience</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-number">25+</span>
+                    <span className="stat-label">Innovations Launched</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="founders-cta">
+            <div className="cta-content">
+              <h3>Ready to Experience the MECHO Difference?</h3>
               <p>
-                With over a decade of experience in the automotive industry,
-                Rahul founded MECHO with a vision to revolutionize car care
-                through sustainable innovation. His expertise in both mechanical
-                services and eco-friendly technologies has positioned MECHO as a
-                leader in Water - Efficient car cleaning solutions.
+                Join thousands of satisfied customers who trust us with their
+                automotive care.
               </p>
-              <p>
-                Under his leadership, MECHO has grown from a local startup to a
-                trusted brand, serving thousands of customers while maintaining
-                our commitment to environmental sustainability and exceptional
-                service quality.
-              </p>
+              <Link to="/pricing" className="cta-button">
+                Book Your Service
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
