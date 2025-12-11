@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { doc, setDoc, collection, addDoc, query, where, getDocs, getDoc } from "firebase/firestore";
+import { useAuth } from "../contexts/AuthContext";
+import { db } from "../firebaseConfig";
 import "./Pricing.css";
 import SEO from "../components/SEO";
 
@@ -11,6 +14,10 @@ const Pricing = () => {
   const [showTimeSelection, setShowTimeSelection] = useState(false);
   const [selectedTimes, setSelectedTimes] = useState({});
   const [isMobile, setIsMobile] = useState(false);
+  const [booking, setBooking] = useState(false);
+  const [userBookings, setUserBookings] = useState([]);
+  const [userName, setUserName] = useState('');
+  const { user } = useAuth();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -22,6 +29,41 @@ const Pricing = () => {
     
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      fetchUserData();
+      fetchUserBookings();
+    }
+  }, [user]);
+
+  const fetchUserData = async () => {
+    try {
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (userDoc.exists()) {
+        setUserName(userDoc.data().name);
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+
+  const fetchUserBookings = async () => {
+    try {
+      console.log('Fetching bookings for user:', user.uid);
+      const q = query(collection(db, 'bookings'), where('userId', '==', user.uid));
+      const querySnapshot = await getDocs(q);
+      const bookings = [];
+      querySnapshot.forEach((doc) => {
+        console.log('Found booking:', doc.id, doc.data());
+        bookings.push({ id: doc.id, ...doc.data() });
+      });
+      console.log('Total bookings found:', bookings.length);
+      setUserBookings(bookings);
+    } catch (error) {
+      console.error('Error fetching bookings:', error);
+    }
+  };
 
   const plans = [
     {
@@ -123,6 +165,84 @@ const Pricing = () => {
     selectedDates.length === getPlanLimits() &&
     selectedDates.every((date) => selectedTimes[date]);
 
+  const handleBookNow = async () => {
+    console.log('Book Now clicked');
+    console.log('User:', user);
+    console.log('Database:', db);
+    
+    if (!user) {
+      alert('Please sign in to book');
+      return;
+    }
+    
+    if (!isBookButtonEnabled) {
+      alert('Please select all dates and times');
+      return;
+    }
+    
+    setBooking(true);
+    try {
+      // Simple test data first
+      const testData = {
+        test: 'hello',
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('Testing Firestore connection...');
+      const testRef = await addDoc(collection(db, 'test'), testData);
+      console.log('Test document created:', testRef.id);
+      
+      // Now try the actual booking
+      const bookingData = {
+        userId: user.uid,
+        userEmail: user.email,
+        plan: {
+          name: selectedPlan.name,
+          price: selectedPlan.price,
+          features: selectedPlan.features
+        },
+        selectedDates: selectedDates.map(dateKey => {
+          const [month, day] = dateKey.split('-');
+          const currentYear = new Date().getFullYear();
+          const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+          return {
+            dateKey: dateKey,
+            displayDate: `${monthNames[parseInt(month)]} ${day}, ${currentYear}`,
+            time: selectedTimes[dateKey],
+            month: parseInt(month),
+            day: parseInt(day)
+          };
+        }),
+        totalDates: selectedDates.length,
+        bookingDate: new Date().toISOString(),
+        status: 'confirmed'
+      };
+      
+      console.log('Creating booking with data:', bookingData);
+      const docRef = await addDoc(collection(db, 'bookings'), bookingData);
+      console.log('Booking created with ID:', docRef.id);
+      
+      alert(`Booking confirmed! ID: ${docRef.id}`);
+      
+      // Refresh bookings after a short delay
+      setTimeout(() => {
+        fetchUserBookings();
+      }, 1000);
+      
+      // Reset form
+      setSelectedPlan(null);
+      setShowCalendar(false);
+      setSelectedDates([]);
+      setSelectedTimes({});
+      
+    } catch (error) {
+      console.error('Full error:', error);
+      alert(`Error: ${error.code} - ${error.message}`);
+    } finally {
+      setBooking(false);
+    }
+  };
+
   const pricingStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -201,11 +321,73 @@ const Pricing = () => {
       />
       <div className="container">
         <div className="page-header">
+          {userName && (
+            <div className="user-greeting">
+              <p>Welcome back, <strong>{userName}</strong>!</p>
+            </div>
+          )}
           <h1 className="page-title">Choose Your Plan</h1>
           <p className="page-subtitle">
             Monthly subscription plans for regular car care
           </p>
         </div>
+
+        {userBookings.length > 0 && (
+          <div className="bookings-section">
+            <h2 className="bookings-title">Your Bookings</h2>
+            <div className="bookings-grid">
+              {userBookings.map((booking) => {
+                const completedWashes = booking.selectedDates?.filter(date => date.completed).length || 0;
+                const totalWashes = booking.totalDates || 0;
+                const balanceWashes = totalWashes - completedWashes;
+                
+                return (
+                  <div key={booking.id} className="booking-card">
+                    <div className="booking-header">
+                      <h3>{booking.plan?.name || booking.planName}</h3>
+                      <span className="booking-status">{booking.status}</span>
+                    </div>
+                    <div className="booking-details">
+                      <p><strong>Price:</strong> {booking.plan?.price || booking.planPrice}</p>
+                      <p><strong>Total Washes:</strong> {totalWashes}</p>
+                      <div className="wash-progress">
+                        <p><strong>Completed Washes:</strong> <span style={{color: '#10B981', fontWeight: '600'}}>{completedWashes}</span></p>
+                        <p><strong>Balance Washes:</strong> <span style={{color: balanceWashes > 0 ? '#EF4444' : '#6B7280', fontWeight: '600'}}>{balanceWashes}</span></p>
+                      </div>
+                      <p><strong>Booked On:</strong> {new Date(booking.bookingDate).toLocaleDateString()}</p>
+                      {booking.plan?.features && (
+                        <div className="plan-features">
+                          <strong>Includes:</strong>
+                          <ul>
+                            {booking.plan.features.map((feature, idx) => (
+                              <li key={idx}>{feature}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                    <div className="booking-dates">
+                      <h4>Wash Schedule & Status:</h4>
+                      <div className="dates-list">
+                        {booking.selectedDates?.map((dateInfo, index) => (
+                          <div key={index} className={`date-item ${dateInfo.completed ? 'completed' : 'pending'}`}>
+                            <div className="date-info">
+                              <span className="date-text">{dateInfo.displayDate || dateInfo.date}</span>
+                              <span className="time-text">{dateInfo.time}</span>
+                            </div>
+                            <span className={`wash-status ${dateInfo.completed ? 'completed' : 'pending'}`}>
+                              {dateInfo.completed ? '✓ Completed' : '⏳ Scheduled'}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         <div className="pricing-grid">
           {plans.map((plan, index) => (
@@ -417,9 +599,10 @@ const Pricing = () => {
                   className={`btn book-btn ${
                     isBookButtonEnabled ? "btn-primary" : "btn-disabled"
                   } ${isMobile ? 'mobile-book-btn' : ''}`}
-                  disabled={!isBookButtonEnabled}
+                  disabled={!isBookButtonEnabled || booking}
+                  onClick={handleBookNow}
                 >
-                  Book Now
+                  {booking ? 'Booking...' : 'Book Now'}
                 </button>
               </div>
             </div>

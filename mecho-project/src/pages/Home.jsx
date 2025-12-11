@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ImgComparisonSlider } from "@img-comparison-slider/react";
 import { FaCar, FaStar } from "react-icons/fa";
 import {
@@ -10,6 +10,7 @@ import {
 } from "react-icons/md";
 import { IoCarSportOutline } from "react-icons/io5";
 import { motion, useInView } from "framer-motion";
+import { useAuth } from "../contexts/AuthContext";
 
 import bgHero from "../assets/bg-hero.png";
 import "../Small Components/Timeline.css";
@@ -24,6 +25,16 @@ const Home = () => {
   const [activeStep, setActiveStep] = useState(0);
   const timelineRef = useRef(null);
   const isInView = useInView(timelineRef, { once: true, margin: "-100px" });
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    if (user) {
+      navigate('/pricing');
+    } else {
+      navigate('/signin');
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -56,42 +67,42 @@ const Home = () => {
       role: "Small Business Owner",
       text: "Super fast service! My car looks exceptionally clean and shiny. The Limited Water wash is extremely effective.",
       avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+        "https://images.pexels.com/photos/1208024/pexels-photo-1208024.jpeg",
     },
     {
       name: "Divya Lakshmi",
       role: "HR Manager",
       text: "The eco-friendly service offered by Mecho is excellent. They save water while delivering a spotless car wash.",
       avatar:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+        "https://images.pexels.com/photos/7580821/pexels-photo-7580821.jpeg",
     },
     {
       name: "Arun Prasad",
       role: "Software Developer",
       text: "A perfectly clean finish in just 15 minutes! This service fits well into my busy schedule.",
       avatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+        "https://images.pexels.com/photos/793253/pexels-photo-793253.jpeg",
     },
     {
       name: "Shalini Ramesh",
       role: "Doctor",
       text: "They handled everything very professionally. My car looked incredibly shiny after the service.",
       avatar:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+        "https://i.pinimg.com/1200x/2c/e0/c8/2ce0c8e9423351561f91c33645141120.jpg",
     },
     {
       name: "Vignesh S",
       role: "Start-up Founder",
       text: "The doorstep service is extremely convenient. I no longer have to spend time visiting car wash centers.",
       avatar:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
+        "https://images.pexels.com/photos/9171217/pexels-photo-9171217.jpeg",
     },
     {
       name: "Anu Priya",
       role: "School Teacher",
       text: "Excellent quality and an eco-friendly approach. My entire family prefers Mecho’s service.",
       avatar:
-        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face",
+        "https://www.shutterstock.com/image-photo/smiling-young-adult-indian-woman-260nw-2340352497.jpg",
     },
   ];
 
@@ -202,7 +213,7 @@ const Home = () => {
                 <span
                   key={wordIndex}
                   style={{
-                    marginRight: wordIndex < 1 ? "0.3em" : "0",
+                    marginRight: wordIndex < 1 ? "0.1em" : "0.2em",
                   }}
                 >
                   {word.split("").map((letter, letterIndex) => {
@@ -228,13 +239,11 @@ const Home = () => {
                   })}
                 </span>
               ))}
-            </span>
-            <span className="title-line-2">
               {["In", "Our", "Trichy"].map((word, wordIndex) => (
                 <span
-                  key={wordIndex}
+                  key={wordIndex + 10}
                   style={{
-                    marginRight: wordIndex < 2 ? "0.3em" : "0",
+                    marginRight: wordIndex < 2 ? "0.1em" : "0",
                   }}
                 >
                   {word.split("").map((letter, letterIndex) => {
@@ -269,8 +278,8 @@ const Home = () => {
 
           {/* CTA Button */}
           <div className="dust-cta" style={{ marginTop: window.innerWidth <= 768 ? '0vh' : '50vh' }}>
-            <Link 
-              to="/pricing" 
+            <button 
+              onClick={handleBookNow}
               className="dust-button"
               style={{
                 display: 'inline-block',
@@ -287,11 +296,10 @@ const Home = () => {
                 boxShadow: '0 4px 15px rgba(255, 106, 0, 0.3)',
                 border: 'none',
                 cursor: 'pointer'
-          
               }}
             >
-              <span>Book Now</span>
-            </Link>
+              <span>{user ? 'Book Now' : 'Sign In to Book'}</span>
+            </button>
           </div>
         </div>
       </section>
@@ -306,11 +314,11 @@ const Home = () => {
             convenient, and significantly reduces water wastage — making it a
             smarter choice for you and the environment.
           </p>
-          <Link to="/pricing">
+          <button onClick={handleBookNow} style={{ background: 'none', border: 'none', padding: 0 }}>
             <div className="highlight-box">
               15 Minutes Car Wash Per Day @ Just ₹75!
             </div>
-          </Link>
+          </button>
         </div>
       </section>
 
@@ -406,9 +414,9 @@ const Home = () => {
             {" "}
             <p className="cta-text">Ready to transform your car care? </p>
           </b>
-          <Link to="/pricing" className="btn-white">
-            Book Now
-          </Link>
+          <button onClick={handleBookNow} className="btn-white">
+            {user ? 'Book Now' : 'Sign In to Book'}
+          </button>
         </div>
       </section>
     </div>

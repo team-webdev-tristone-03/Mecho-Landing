@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import emailjs from "emailjs-com";
 import { FaEnvelope, FaClock, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import "./Contact.css";
 import SEO from "../components/SEO";
+import { useAuth } from "../contexts/AuthContext";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,16 @@ const Contact = () => {
     phone: "",
     message: "",
   });
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleViewPlans = () => {
+    if (user) {
+      navigate('/pricing');
+    } else {
+      navigate('/signin');
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -101,9 +113,9 @@ const Contact = () => {
                 Get in touch with our team for any queries or support
               </p>
             </div>
-            <a href="/pricing" className="btn btn-primary view-plans-btn">
-              View Plans
-            </a>
+            <button onClick={handleViewPlans} className="btn btn-primary view-plans-btn">
+              {user ? 'View Plans' : 'Sign In to View Plans'}
+            </button>
           </div>
         </div>
 

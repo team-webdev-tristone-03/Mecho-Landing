@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./About.css";
 import Dusty from "../assets/Dusty.jpg";
 import Clean from "../assets/Clean.jpg";
@@ -9,12 +9,23 @@ import React from "react";
 import { FaUser, FaLeaf, FaBolt, FaGem } from "react-icons/fa";
 import SEO from "../components/SEO";
 import COFounder from "../assets/co-founder.jpg";
+import { useAuth } from "../contexts/AuthContext";
 
 const About = () => {
   const heroRef = useRef(null);
   const featuresRef = useRef(null);
   const visionRef = useRef(null);
   const ceoRef = useRef(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleBookService = () => {
+    if (user) {
+      navigate("/pricing");
+    } else {
+      navigate("/signin");
+    }
+  };
 
   useEffect(() => {
     const observerOptions = {
@@ -283,22 +294,24 @@ const About = () => {
             <div className="founder-card founder-primary">
               <div className="founder-image-container">
                 <div className="founder-image">
-                  <img
+                  {/* <img
                     src={COFounder}
                     alt="John - Co-Founder & CEO"
                     className="founder-photo"
-                  />
+                  /> */}
                 </div>
-                <div className="founder-badge">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="#FFD700"
-                  >
-                    <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z" />
-                  </svg>
-                </div>
+                <Link to="/pricing">
+                  <div className="founder-badge">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="#FFD700"
+                    >
+                      <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z" />
+                    </svg>
+                  </div>
+                </Link>
               </div>
 
               <div className="founder-info">
@@ -308,8 +321,8 @@ const About = () => {
 
                 <div className="founder-bio">
                   <p className="bio-highlight">
-                    Mecho was created with one goal, to give Trichy a car
-                    service people can finally trust.
+                    "Mecho was created with one goal, to give Trichy a car
+                    service people can finally trust."
                   </p>
                   <p>
                     My focus is simple: every wash, every repair, every service
@@ -348,16 +361,18 @@ const About = () => {
                     className="founder-photo"
                   />
                 </div>
-                <div className="founder-badge">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="#FFD700"
-                  >
-                    <path d="M9 12L11 14L15 10M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z" />
-                  </svg>
-                </div>
+                <Link to="/pricing">
+                  <div className="founder-badge">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="#FFD700"
+                    >
+                      <path d="M9 12L11 14L15 10M21 12C21 16.97 16.97 21 12 21C7.03 21 3 16.97 3 12C3 7.03 7.03 3 12 3C16.97 3 21 7.03 21 12Z" />
+                    </svg>
+                  </div>
+                </Link>
               </div>
 
               <div className="founder-info">
@@ -408,8 +423,8 @@ const About = () => {
                 Join thousands of satisfied customers who trust us with their
                 automotive care.
               </p>
-              <Link to="/pricing" className="cta-button">
-                Book Your Service
+              <button onClick={handleBookService} className="cta-button">
+                {user ? "Book Your Service" : "Sign In to Book"}
                 <svg
                   width="20"
                   height="20"
@@ -418,7 +433,7 @@ const About = () => {
                 >
                   <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" />
                 </svg>
-              </Link>
+              </button>
             </div>
           </div>
         </div>

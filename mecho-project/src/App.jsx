@@ -1,6 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -11,91 +12,54 @@ import Contact from "./pages/Contact";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
+import AdminDashboard from "./pages/AdminDashboard";
 import { FAQ, TermsAndConditions, PrivacyPolicy } from "./pages";
+
+const AuthRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user ? <Navigate to="/" /> : children;
+};
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/signin" />;
+};
+
+const AppRoutes = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/signin" element={<AuthRoute><SignIn /></AuthRoute>} />
+          <Route path="/signup" element={<AuthRoute><SignUp /></AuthRoute>} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/admin-dashboard-123" element={<AdminDashboard />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const App = () => {
   return (
     <HelmetProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/signin" element={<SignIn />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/terms" element={<TermsAndConditions />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <ScrollToTop />
+          <AppRoutes />
+        </Router>
+      </AuthProvider>
     </HelmetProvider>
   );
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// I had an 3 types if pricing 
-// 1.Silver , 2.Gold ,3.Platinum 
-// 1 has ₹499
-// per month
-
-// 4 exterior wash
-// 1 interior wash
-
-// 2 has ₹899
-// per month
-
-// 8 exterior wash
-// 1 interior wash
-// Tyre cleaning
-
-// 3 has ₹1499
-// per month
-
-// 15 exterior wash
-// 1 interior wash
-// Tyre cleaning
-// Polish
-
-// give me the prompt to use in Pricing.jsx when i click an Select 
